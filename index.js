@@ -66,13 +66,14 @@ function wageComputer(workdetail) {
   let totalCost = 0;
 
   for (let day of daysWork) {
-    let d = day[0];
-    let s = day.substr(2);
-    let fromAndTo = s.split("-");
+    let dayWorked = day[0];
+    let timeWorked = day.substr(2);
+    console.log(day.substr(2));
+    let fromAndTo = timeWorked.split("-");
     let from = fromAndTo[0].split(":")[0];
     let to = fromAndTo[1].split(":")[0];
-    if (d === "S") {
-      let weekend = store[d];
+    if (dayWorked === "S") {
+      let weekend = store[dayWorked];
       for (let i = +from; i < +to; i++) {
         totalCost += weekend[i];
       }
