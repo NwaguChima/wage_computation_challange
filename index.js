@@ -1,4 +1,10 @@
-function fact(workdetail) {
+const fs = require("fs");
+
+const input = fs
+  .readFileSync("./details.txt", { encoding: "utf8" })
+  .split("\n");
+
+function wageComputer(workdetail) {
   let store = {
     S: {
       1: 30,
@@ -78,12 +84,10 @@ function fact(workdetail) {
     }
   }
 
-  return `The amount to pay ${name} is: ${totalCost} USD`;
+  return `"The amount to pay ${name} is: ${totalCost} USD"`;
 }
 
-console.log(
-  fact(
-    "RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00"
-  )
-);
-console.log(fact("ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00"));
+module.exports = {
+  wageComputer,
+  input,
+};
