@@ -1,6 +1,6 @@
 function fact(workdetail) {
   let store = {
-    weekends: {
+    S: {
       1: 30,
       2: 30,
       3: 30,
@@ -26,7 +26,7 @@ function fact(workdetail) {
       23: 25,
       0: 25,
     },
-    weekdays: {
+    O: {
       1: 25,
       2: 25,
       3: 25,
@@ -58,4 +58,32 @@ function fact(workdetail) {
   let name = vals[0];
   let daysWork = vals[1].split(",");
   let totalCost = 0;
+
+  for (let day of daysWork) {
+    let d = day[0];
+    let s = day.substr(2);
+    let fromAndTo = s.split("-");
+    let from = fromAndTo[0].split(":")[0];
+    let to = fromAndTo[1].split(":")[0];
+    if (d === "S") {
+      let weekend = store[d];
+      for (let i = +from; i < +to; i++) {
+        totalCost += weekend[i];
+      }
+    } else {
+      let weekday = store["O"];
+      for (let i = +from; i < +to; i++) {
+        totalCost += weekday[i];
+      }
+    }
+  }
+
+  return `The amount to pay ${name} is: ${totalCost} USD`;
 }
+
+console.log(
+  fact(
+    "RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00"
+  )
+);
+console.log(fact("ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00"));
