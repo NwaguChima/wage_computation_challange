@@ -1,7 +1,10 @@
 const fs = require("fs");
+const path = require("path");
 
 const input = fs
-  .readFileSync("./details.txt", { encoding: "utf8" })
+  .readFileSync(path.join(__dirname + "/details.txt"), {
+    encoding: "utf8",
+  })
   .split("\n");
 
 function wageComputer(workdetail) {
